@@ -8,6 +8,7 @@ import { Label } from "../ui/label";
 import { FormFields, schema } from "@/schemas/register-schema";
 import FormSubmitButton from "./form-submit-button";
 import FormErrorDescription from "./form-error-description";
+import { registerAction } from "@/lib/actions";
 
 const RegisterForm = () => {
   const {
@@ -23,7 +24,7 @@ const RegisterForm = () => {
       formData.append(key, value);
     });
 
-    // register action
+    await registerAction(formData);
   };
 
   return (

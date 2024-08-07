@@ -1,7 +1,16 @@
+import ErrorMessage from "@/components/auth/error-message";
 import RegisterForm from "@/components/auth/register-form";
 import Link from "next/link";
 
-const Page = () => {
+interface Params {
+  searchParams?: {
+    error?: string;
+  };
+}
+
+const Page: React.FC<Params> = ({ searchParams }) => {
+  const error = searchParams?.error;
+
   return (
     <div className="flex flex-col gap-4">
       <div>
@@ -17,9 +26,10 @@ const Page = () => {
           className="font-semibold text-zinc-800 dark:text-white"
           href="/login"
         >
-          Login
+          Log in
         </Link>
       </p>
+      {error && <ErrorMessage message={error} />}
     </div>
   );
 };
