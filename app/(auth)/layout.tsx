@@ -18,7 +18,7 @@ export default async function Layout({
 
   return (
     <div className="h-screen">
-      <div className="flex flex-col gap-2 justify-center items-center h-full">
+      <div className="flex flex-col gap-2 justify-center items-center h-full px-4 md:px-0">
         <Logo />
         <div className="max-w-[360px] w-full">{children}</div>
       </div>

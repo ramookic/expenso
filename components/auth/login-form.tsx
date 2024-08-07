@@ -9,6 +9,7 @@ import { FormFields, schema } from "@/schemas/login-schema";
 import FormErrorDescription from "./form-error-description";
 import FormSubmitButton from "./form-submit-button";
 import { loginAction } from "@/lib/actions";
+import InputWrapper from "../form/input-wrapper";
 
 const LoginForm = () => {
   const {
@@ -29,7 +30,7 @@ const LoginForm = () => {
 
   return (
     <form className="flex flex-col gap-4" onSubmit={handleSubmit(onSubmit)}>
-      <div>
+      <InputWrapper>
         <Label htmlFor="email">Email</Label>
         <Input
           {...register("email")}
@@ -40,8 +41,8 @@ const LoginForm = () => {
         {errors.email && (
           <FormErrorDescription message={errors.email.message} />
         )}
-      </div>
-      <div>
+      </InputWrapper>
+      <InputWrapper>
         <Label htmlFor="password">Password</Label>
         <Input
           {...register("password")}
@@ -52,7 +53,7 @@ const LoginForm = () => {
         {errors.password && (
           <FormErrorDescription message={errors.password.message} />
         )}
-      </div>
+      </InputWrapper>
       <FormSubmitButton isLoading={isSubmitting}>Log in</FormSubmitButton>
     </form>
   );

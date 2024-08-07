@@ -9,6 +9,7 @@ import { FormFields, schema } from "@/schemas/register-schema";
 import FormSubmitButton from "./form-submit-button";
 import FormErrorDescription from "./form-error-description";
 import { registerAction } from "@/lib/actions";
+import InputWrapper from "../form/input-wrapper";
 
 const RegisterForm = () => {
   const {
@@ -29,7 +30,7 @@ const RegisterForm = () => {
 
   return (
     <form className="flex flex-col gap-4" onSubmit={handleSubmit(onSubmit)}>
-      <div>
+      <InputWrapper>
         <Label htmlFor="name">Name</Label>
         <Input
           {...register("name")}
@@ -38,8 +39,8 @@ const RegisterForm = () => {
           placeholder="Enter your name"
         />
         {errors.name && <FormErrorDescription message={errors.name.message} />}
-      </div>
-      <div>
+      </InputWrapper>
+      <InputWrapper>
         <Label htmlFor="email">Email</Label>
         <Input
           {...register("email")}
@@ -50,8 +51,8 @@ const RegisterForm = () => {
         {errors.email && (
           <FormErrorDescription message={errors.email.message} />
         )}
-      </div>
-      <div>
+      </InputWrapper>
+      <InputWrapper>
         <Label htmlFor="password">Password</Label>
         <Input
           {...register("password")}
@@ -62,7 +63,7 @@ const RegisterForm = () => {
         {errors.password && (
           <FormErrorDescription message={errors.password.message} />
         )}
-      </div>
+      </InputWrapper>
       <FormSubmitButton isLoading={isSubmitting}>Sign up</FormSubmitButton>
     </form>
   );
