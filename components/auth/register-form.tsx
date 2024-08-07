@@ -40,9 +40,10 @@ const RegisterForm = () => {
         {errors.name && <FormErrorDescription message={errors.name.message} />}
       </div>
       <div>
-        <Label htmlFor="name">Email</Label>
+        <Label htmlFor="email">Email</Label>
         <Input
           {...register("email")}
+          id="email"
           type="email"
           placeholder="Enter your email"
         />
@@ -51,9 +52,10 @@ const RegisterForm = () => {
         )}
       </div>
       <div>
-        <Label htmlFor="name">Password</Label>
+        <Label htmlFor="password">Password</Label>
         <Input
           {...register("password")}
+          id="password"
           type="password"
           placeholder="Create a password"
         />
