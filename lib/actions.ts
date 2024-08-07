@@ -25,6 +25,22 @@ export async function registerAction(formData: FormData) {
     redirect(`/register?error=${error.message}`);
   }
 
-  revalidatePath("/");
+  revalidatePath("/", "layout");
+  redirect("/");
+}
+
+export async function loginAction(formData: FormData) {
+  const supabase = createClient();
+
+  const email = formData.get("email") as string;
+  const password = formData.get("password") as string;
+
+  const { error } = await supabase.auth.signInWithPassword({ email, password });
+
+  if (error) {
+    redirect(`/login/?error=${error.message}`);
+  }
+
+  revalidatePath("/", "layout");
   redirect("/");
 }
