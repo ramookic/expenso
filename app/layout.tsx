@@ -1,11 +1,14 @@
 import type { Metadata } from "next";
-import { DM_Sans } from "next/font/google";
+import { Outfit } from "next/font/google";
 import "./globals.css";
 
-const font = DM_Sans({ subsets: ["latin"] });
+const font = Outfit({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Expenso",
+  title: {
+    template: "%s | Expenso",
+    default: "Welcome | Expenso",
+  },
   description:
     "A simple and efficient tool for managing your personal finances.",
 };

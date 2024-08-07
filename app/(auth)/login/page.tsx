@@ -2,6 +2,10 @@ import ErrorMessage from "@/components/auth/error-message";
 import LoginForm from "@/components/auth/login-form";
 import Link from "next/link";
 
+export const metadata = {
+  title: "Log in",
+};
+
 interface Params {
   searchParams?: {
     error?: string;
@@ -14,7 +18,7 @@ const Page: React.FC<Params> = ({ searchParams }) => {
   return (
     <div className="flex flex-col gap-4">
       <div>
-        <h1 className="text-xl font-bold text-center">
+        <h1 className="text-2xl font-bold text-center">
           Log in to your account
         </h1>
         <p className="text-center text-sm text-zinc-500">
