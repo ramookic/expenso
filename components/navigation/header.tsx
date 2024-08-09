@@ -1,5 +1,4 @@
 import { getUser } from "@/lib/data-service";
-import { redirect } from "next/navigation";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 import {
   DropdownMenu,
@@ -11,7 +10,7 @@ import LogoutButton from "../auth/logout-button";
 const Header = async () => {
   const user = await getUser();
 
-  if (!user) redirect("/login");
+  if (!user) return null;
 
   const { avatar, name, email } = user.user_metadata;
 
@@ -21,7 +20,7 @@ const Header = async () => {
         <DropdownMenuTrigger>
           <ProfileImage name={name} avatar={avatar} />
         </DropdownMenuTrigger>
-        <DropdownMenuContent className="flex flex-col gap-4 max-w- p-4 rounded-xl mr-4">
+        <DropdownMenuContent className="flex flex-col gap-4 max-w- p-4 rounded-3xl mr-4">
           <div className="flex gap-2">
             <ProfileImage name={name} avatar={avatar} />
             <div className="flex flex-col">
