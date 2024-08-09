@@ -17,6 +17,7 @@ export async function registerAction(formData: FormData) {
     options: {
       data: {
         name,
+        avatar: "",
       },
     },
   });
