@@ -3,6 +3,7 @@
 import { createClient } from "@/utils/supabase/server";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
+import { getUser } from "./data-service";
 
 export async function registerAction(formData: FormData) {
   const supabase = createClient();
@@ -53,6 +54,32 @@ export async function logoutAction() {
   const { error } = await supabase.auth.signOut();
 
   if (error) throw new Error(error.message);
+
+  revalidatePath("/", "layout");
+  redirect("/login");
+}
+
+export async function finishOnboardingAction(updateData: {
+  currency: string;
+  isOnboarded: boolean;
+}) {
+  const supabase = createClient();
+
+  const user = await getUser();
+  if (!user) {
+    throw new Error("User not authenticated");
+  }
+
+  const { error } = await supabase.auth.updateUser({
+    data: {
+      currency: updateData.currency,
+      isOnboarded: updateData.isOnboarded,
+    },
+  });
+
+  if (error) {
+    throw new Error(error.message);
+  }
 
   revalidatePath("/", "layout");
   redirect("/login");

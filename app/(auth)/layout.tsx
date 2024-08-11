@@ -12,7 +12,7 @@ export default async function Layout({
     data: { user },
   } = await supabase.auth.getUser();
 
-  if (user?.role === "authenticated" && user?.app_metadata.isOnboarded) {
+  if (user?.role === "authenticated") {
     redirect("/");
   }
 

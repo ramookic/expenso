@@ -38,7 +38,7 @@ const links = [
     icon: <BiCategory />,
   },
   {
-    id: 3,
+    id: 4,
     to: "/settings",
     title: "Settings",
     icon: <BiCog />,

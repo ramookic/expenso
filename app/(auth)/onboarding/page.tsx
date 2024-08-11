@@ -1,13 +1,19 @@
-const Page = () => {
+import { getUser } from "@/lib/data-service";
+
+const Page = async () => {
+  const data = await getUser();
+
+  console.log(data?.user_metadata);
+
   return (
-    <div className="text-center flex flex-col gap-4">
-      <div>
+    <div className="h-screen flex justify-center items-center">
+      <div className="flex flex-col items-center justify-center">
         <h1 className="text-3xl text-center font-bold text-zinc-900">
-          Start saving the easy way
+          Welcome{" "}
+          <span className="text-blue-600">{data?.user_metadata.name}!</span>
         </h1>
         <p className="text-center text-sm text-zinc-500">
-          Easily track your income and expenses, and take control of your
-          financial journey.
+          First, choose your preferred currency.
         </p>
       </div>
     </div>

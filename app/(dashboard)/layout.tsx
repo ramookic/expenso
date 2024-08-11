@@ -1,7 +1,17 @@
+import OnboardModal from "@/components/auth/onboarding-modal";
 import Header from "@/components/navigation/header";
 import Sidebar from "@/components/navigation/sidebar";
+import { getUser } from "@/lib/data-service";
 
-export default function Layout({ children }: { children: React.ReactNode }) {
+export default async function Layout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  const data = await getUser();
+
+  if (!data) return null;
+
   return (
     <div className="h-screen flex bg-zinc-50">
       <Sidebar />
@@ -11,6 +21,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
           {children}
         </div>
       </div>
+      {!data?.user_metadata.isOnboarded && <OnboardModal />}
     </div>
   );
 }

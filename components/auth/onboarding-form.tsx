@@ -1,0 +1,68 @@
+"use client";
+
+import { Controller, SubmitHandler, useForm } from "react-hook-form";
+import InputWrapper from "../form/input-wrapper";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "../ui/select";
+import FormSubmitButton from "./form-submit-button";
+import FormErrorDescription from "./form-error-description";
+import { FormFields, schema } from "@/schemas/onboarding-schema";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { finishOnboardingAction } from "@/lib/actions";
+
+interface OnboardFormProps {
+  currencies: { code: string; name: unknown }[] | undefined;
+}
+
+const OnboardForm: React.FC<OnboardFormProps> = ({ currencies }) => {
+  const {
+    control,
+    handleSubmit,
+    formState: { errors, isSubmitting },
+  } = useForm<FormFields>({ resolver: zodResolver(schema) });
+
+  const onSubmit: SubmitHandler<FormFields> = async (data) => {
+    const formData = { ...data, isOnboarded: true };
+
+    await finishOnboardingAction(formData);
+  };
+
+  return (
+    <form
+      onSubmit={handleSubmit(onSubmit)}
+      className="flex flex-col gap-4 mt-4"
+    >
+      <InputWrapper>
+        <Controller
+          name="currency"
+          control={control}
+          render={({ field }) => (
+            <Select value={field.value} onValueChange={field.onChange}>
+              <SelectTrigger className="w-full">
+                <SelectValue placeholder="Select a currency" />
+              </SelectTrigger>
+              <SelectContent className="h-80">
+                {currencies?.map((currency) => (
+                  <SelectItem key={currency.code} value={currency.code}>
+                    {currency.code} - {String(currency.name)}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          )}
+        />
+        {errors.currency && (
+          <FormErrorDescription message={errors.currency.message} />
+        )}
+      </InputWrapper>
+      <FormSubmitButton isLoading={isSubmitting}>Continue</FormSubmitButton>
+    </form>
+  );
+};
+
+export default OnboardForm;
