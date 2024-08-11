@@ -5,6 +5,7 @@ import Logo from "../ui/logo";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
 import {
+  BiCategory,
   BiCog,
   BiMoneyWithdraw,
   BiSolidCoinStack,
@@ -29,6 +30,12 @@ const links = [
     to: "/income",
     title: "Income",
     icon: <BiSolidCoinStack />,
+  },
+  {
+    id: 3,
+    to: "/category",
+    title: "Category",
+    icon: <BiCategory />,
   },
   {
     id: 3,

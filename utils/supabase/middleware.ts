@@ -33,6 +33,8 @@ export async function updateSession(request: NextRequest) {
     data: { user },
   } = await supabase.auth.getUser();
 
+  const isOnboarded = user?.app_metadata;
+
   if (
     !user &&
     !request.nextUrl.pathname.startsWith("/login") &&
@@ -42,6 +44,12 @@ export async function updateSession(request: NextRequest) {
     // no user, potentially respond by redirecting the user to the login page
     const url = request.nextUrl.clone();
     url.pathname = "/login";
+    return NextResponse.redirect(url);
+  }
+
+  if (isOnboarded && !request.nextUrl.pathname.startsWith("/onboarding")) {
+    const url = request.nextUrl.clone();
+    url.pathname = "/onboarding";
     return NextResponse.redirect(url);
   }
 

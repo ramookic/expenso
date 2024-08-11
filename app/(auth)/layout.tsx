@@ -8,9 +8,11 @@ export default async function Layout({
   children: React.ReactNode;
 }) {
   const supabase = createClient();
-  const { data } = await supabase.auth.getUser();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
 
-  if (data.user) {
+  if (user?.role === "authenticated" && user?.app_metadata.isOnboarded) {
     redirect("/");
   }
 

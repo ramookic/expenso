@@ -18,6 +18,7 @@ export async function registerAction(formData: FormData) {
       data: {
         name,
         avatar: "",
+        isOnboarded: false,
       },
     },
   });
