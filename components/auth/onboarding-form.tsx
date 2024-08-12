@@ -15,11 +15,11 @@ import { FormFields, schema } from "@/schemas/onboarding-schema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { finishOnboardingAction } from "@/lib/actions";
 
-interface OnboardFormProps {
+interface OnboardingFormProps {
   currencies: { code: string; name: unknown }[] | undefined;
 }
 
-const OnboardForm: React.FC<OnboardFormProps> = ({ currencies }) => {
+const OnboardingForm: React.FC<OnboardingFormProps> = ({ currencies }) => {
   const {
     control,
     handleSubmit,
@@ -27,7 +27,11 @@ const OnboardForm: React.FC<OnboardFormProps> = ({ currencies }) => {
   } = useForm<FormFields>({ resolver: zodResolver(schema) });
 
   const onSubmit: SubmitHandler<FormFields> = async (data) => {
-    const formData = { ...data, isOnboarded: true };
+    const formData = new FormData();
+
+    Object.entries(data).forEach(([key, value]) => {
+      formData.append(key, value);
+    });
 
     await finishOnboardingAction(formData);
   };
@@ -43,7 +47,7 @@ const OnboardForm: React.FC<OnboardFormProps> = ({ currencies }) => {
           control={control}
           render={({ field }) => (
             <Select value={field.value} onValueChange={field.onChange}>
-              <SelectTrigger className="w-full">
+              <SelectTrigger data-testid="select-currency" className="w-full">
                 <SelectValue placeholder="Select a currency" />
               </SelectTrigger>
               <SelectContent className="h-80">
@@ -65,4 +69,4 @@ const OnboardForm: React.FC<OnboardFormProps> = ({ currencies }) => {
   );
 };
 
-export default OnboardForm;
+export default OnboardingForm;

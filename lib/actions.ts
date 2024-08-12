@@ -19,6 +19,7 @@ export async function registerAction(formData: FormData) {
       data: {
         name,
         avatar: "",
+        currency: "",
         isOnboarded: false,
       },
     },
@@ -59,10 +60,7 @@ export async function logoutAction() {
   redirect("/login");
 }
 
-export async function finishOnboardingAction(updateData: {
-  currency: string;
-  isOnboarded: boolean;
-}) {
+export async function finishOnboardingAction(formData: FormData) {
   const supabase = createClient();
 
   const user = await getUser();
@@ -70,10 +68,12 @@ export async function finishOnboardingAction(updateData: {
     throw new Error("User not authenticated");
   }
 
+  const currency = formData.get("currency");
+
   const { error } = await supabase.auth.updateUser({
     data: {
-      currency: updateData.currency,
-      isOnboarded: updateData.isOnboarded,
+      currency,
+      isOnboarded: true,
     },
   });
 

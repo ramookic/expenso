@@ -1,7 +1,7 @@
 import { getCurrencies } from "@/lib/utils";
-import OnboardForm from "./onboarding-form";
+import OnboardingForm from "./onboarding-form";
 
-const OnboardModal = async () => {
+const OnboardingModal = async () => {
   const currencies = await getCurrencies();
 
   return (
@@ -13,10 +13,10 @@ const OnboardModal = async () => {
         <p className="text-sm text-zinc-500">
           Choose your preferred currency to continue.
         </p>
-        <OnboardForm currencies={currencies} />
+        <OnboardingForm currencies={currencies} />
       </div>
     </div>
   );
 };
 
-export default OnboardModal;
+export default OnboardingModal;
