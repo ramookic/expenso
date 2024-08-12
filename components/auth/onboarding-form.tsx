@@ -52,7 +52,11 @@ const OnboardingForm: React.FC<OnboardingFormProps> = ({ currencies }) => {
               </SelectTrigger>
               <SelectContent className="h-80">
                 {currencies?.map((currency) => (
-                  <SelectItem key={currency.code} value={currency.code}>
+                  <SelectItem
+                    id={currency.code}
+                    key={currency.code}
+                    value={currency.code}
+                  >
                     {currency.code} - {String(currency.name)}
                   </SelectItem>
                 ))}
