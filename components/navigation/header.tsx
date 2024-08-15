@@ -6,6 +6,17 @@ import {
   DropdownMenuTrigger,
 } from "../ui/dropdown-menu";
 import LogoutButton from "../auth/logout-button";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "../ui/dialog";
+import { Button } from "../ui/button";
+import AddIncomeModal from "../dashboard/add-income-modal";
+import AddExpenseModal from "../dashboard/add-expense-modal";
 
 const Header = async () => {
   const user = await getUser();
@@ -15,12 +26,23 @@ const Header = async () => {
   const { avatar, name, email } = user.user_metadata;
 
   return (
-    <header className="p-4 flex justify-end">
+    <header className="p-4 flex gap-4 justify-end">
+      <DropdownMenu>
+        <DropdownMenuTrigger asChild>
+          <button className="px-[14px] bg-blue-500 rounded-full text-xl text-white transition-all duration-300 ease hover:bg-blue-600">
+            +
+          </button>
+        </DropdownMenuTrigger>
+        <DropdownMenuContent className="flex flex-col gap-2 p-4 rounded-3xl max-w-[300px] w-full">
+          <AddIncomeModal />
+          <AddExpenseModal />
+        </DropdownMenuContent>
+      </DropdownMenu>
       <DropdownMenu>
         <DropdownMenuTrigger>
           <ProfileImage name={name} avatar={avatar} />
         </DropdownMenuTrigger>
-        <DropdownMenuContent className="flex flex-col gap-4 max-w- p-4 rounded-3xl mr-4">
+        <DropdownMenuContent className="flex flex-col gap-4 p-4 rounded-3xl mr-4">
           <div className="flex gap-2">
             <ProfileImage name={name} avatar={avatar} />
             <div className="flex flex-col">
