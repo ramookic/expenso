@@ -6,8 +6,8 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import { Input } from "../ui/input";
 import { Label } from "../ui/label";
 import { FormFields, schema } from "@/schemas/register-schema";
-import FormSubmitButton from "./form-submit-button";
-import FormErrorDescription from "./form-error-description";
+import FormSubmitButton from "../form/form-submit-button";
+import FormErrorDescription from "../form/form-error-description";
 import { registerAction } from "@/lib/actions";
 import InputWrapper from "../form/input-wrapper";
 

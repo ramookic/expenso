@@ -1,4 +1,3 @@
-import { Button } from "../ui/button";
 import {
   Dialog,
   DialogContent,
@@ -7,12 +6,15 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "../ui/dialog";
+import AddIncomeForm from "./add-income-form";
 
 const AddIncomeModal = () => {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button variant="outline">Add income</Button>
+        <button className="text-[15px] font-semibold hover:bg-zinc-50 p-3">
+          Add income
+        </button>
       </DialogTrigger>
       <DialogContent>
         <DialogHeader>
@@ -21,6 +23,7 @@ const AddIncomeModal = () => {
             This will add new income to your records.
           </DialogDescription>
         </DialogHeader>
+        <AddIncomeForm />
       </DialogContent>
     </Dialog>
   );

@@ -33,7 +33,7 @@ const Header = async () => {
             +
           </button>
         </DropdownMenuTrigger>
-        <DropdownMenuContent className="flex flex-col gap-2 p-4 rounded-3xl max-w-[300px] w-full">
+        <DropdownMenuContent className="flex flex-col rounded-2xl max-w-[300px] w-full divide-y">
           <AddIncomeModal />
           <AddExpenseModal />
         </DropdownMenuContent>
@@ -42,7 +42,7 @@ const Header = async () => {
         <DropdownMenuTrigger>
           <ProfileImage name={name} avatar={avatar} />
         </DropdownMenuTrigger>
-        <DropdownMenuContent className="flex flex-col gap-4 p-4 rounded-3xl mr-4">
+        <DropdownMenuContent className="flex flex-col gap-4 p-4 rounded-2xl mr-4">
           <div className="flex gap-2">
             <ProfileImage name={name} avatar={avatar} />
             <div className="flex flex-col">

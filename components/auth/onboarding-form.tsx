@@ -9,8 +9,8 @@ import {
   SelectTrigger,
   SelectValue,
 } from "../ui/select";
-import FormSubmitButton from "./form-submit-button";
-import FormErrorDescription from "./form-error-description";
+import FormSubmitButton from "../form/form-submit-button";
+import FormErrorDescription from "../form/form-error-description";
 import { FormFields, schema } from "@/schemas/onboarding-schema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { finishOnboardingAction } from "@/lib/actions";

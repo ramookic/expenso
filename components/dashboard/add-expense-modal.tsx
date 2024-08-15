@@ -12,7 +12,9 @@ const AddExpenseModal = () => {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button variant="outline">Add expense</Button>
+        <button className="text-[15px] font-semibold hover:bg-zinc-50 p-3">
+          Add expense
+        </button>
       </DialogTrigger>
       <DialogContent>
         <DialogHeader>
