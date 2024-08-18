@@ -4,6 +4,10 @@ import { createClient } from "@/utils/supabase/server";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { getUser } from "./data-service";
+import {
+  ExpenseInsertType,
+  IncomeInsertType,
+} from "@/utils/supabase/database_types";
 
 export async function registerAction(formData: FormData) {
   const supabase = createClient();
@@ -83,4 +87,58 @@ export async function finishOnboardingAction(formData: FormData) {
 
   revalidatePath("/", "layout");
   redirect("/login");
+}
+
+export async function addIncomeExpenseAction(
+  formData: FormData,
+  isAddIncome: boolean
+) {
+  const user = await getUser();
+
+  if (!user) {
+    throw new Error("User not authenticated");
+  }
+
+  const title = formData.get("title") as string;
+  const description = formData.get("description") as string;
+  const amount = formData.get("amount") as string;
+  const category = formData.get("category") as string;
+
+  const insertData = {
+    title,
+    description,
+    amount: Number(amount),
+    category,
+    userId: user.id,
+  };
+
+  if (isAddIncome) {
+    await addIncome(insertData);
+  } else {
+    await addExpense(insertData);
+  }
+}
+
+async function addIncome(insertData: IncomeInsertType) {
+  const supabase = createClient();
+  const { error } = await supabase.from("incomes").insert(insertData);
+
+  if (error) {
+    throw new Error(error.message);
+  }
+
+  revalidatePath("/", "layout");
+  redirect("/income");
+}
+
+async function addExpense(insertData: ExpenseInsertType) {
+  const supabase = createClient();
+  const { error } = await supabase.from("expenses").insert(insertData);
+
+  if (error) {
+    throw new Error(error.message);
+  }
+
+  revalidatePath("/", "layout");
+  redirect("/expenses");
 }

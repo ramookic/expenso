@@ -17,12 +17,14 @@ import { Controller, SubmitHandler, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { FormFields, schema } from "@/schemas/income-expense-schema";
 import FormErrorDescription from "../form/form-error-description";
+import { addIncomeExpenseAction } from "@/lib/actions";
 
 interface Props {
   isAddIncome: boolean;
+  setOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const AddIncomeExpenseForm: React.FC<Props> = ({ isAddIncome }) => {
+const AddIncomeExpenseForm: React.FC<Props> = ({ isAddIncome, setOpen }) => {
   const {
     control,
     register,
@@ -37,12 +39,8 @@ const AddIncomeExpenseForm: React.FC<Props> = ({ isAddIncome }) => {
       formData.append(key, value.toString());
     });
 
-    if (isAddIncome) {
-      // add income
-      return;
-    }
-
-    // add expense
+    await addIncomeExpenseAction(formData, isAddIncome);
+    setOpen(false);
     return;
   };
 

@@ -6,8 +6,7 @@ import {
   DropdownMenuTrigger,
 } from "../ui/dropdown-menu";
 import LogoutButton from "../auth/logout-button";
-import AddIncomeModal from "../dashboard/add-income-modal";
-import AddExpenseModal from "../dashboard/add-expense-modal";
+import AddIncomeExpenseModal from "../dashboard/add-income-expense-modal";
 
 const Header = async () => {
   const user = await getUser();
@@ -25,8 +24,8 @@ const Header = async () => {
           </button>
         </DropdownMenuTrigger>
         <DropdownMenuContent className="flex flex-col rounded-2xl max-w-[300px] w-full divide-y">
-          <AddIncomeModal />
-          <AddExpenseModal />
+          <AddIncomeExpenseModal isAddIncome />
+          <AddIncomeExpenseModal isAddIncome={false} />
         </DropdownMenuContent>
       </DropdownMenu>
       <DropdownMenu>
