@@ -1,6 +1,5 @@
 import OnboardModal from "@/components/auth/onboarding-modal";
 import Header from "@/components/navigation/header";
-import Sidebar from "@/components/navigation/sidebar";
 import { getUser } from "@/lib/data-service";
 
 export default async function Layout({
@@ -14,12 +13,9 @@ export default async function Layout({
 
   return (
     <div className="h-screen flex bg-zinc-50">
-      <Sidebar />
-      <div className="flex flex-col w-full h-full">
+      <div className="flex flex-col w-full h-full container mx-auto">
         <Header />
-        <div className="bg-white w-full rounded-tl-[60px] h-full p-8">
-          {children}
-        </div>
+        <div className="w-full h-full p-4">{children}</div>
       </div>
       {!data?.user_metadata.isOnboarded && <OnboardModal />}
     </div>

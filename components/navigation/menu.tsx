@@ -45,31 +45,28 @@ const links = [
   },
 ];
 
-const Sidebar = () => {
+const Menu = () => {
   const pathname = usePathname();
   const lastLink = links.length - 1;
 
   return (
-    <aside className="max-w-[260px] h-screen w-full p-6 flex flex-col gap-6">
-      <Logo />
-      <div className="flex flex-col gap-2 h-full">
-        {links.map((link, index) => (
-          <Link
-            href={link.to}
-            key={link.id}
-            className={cn(
-              "p-4 rounded-xl text-[15px] font-medium flex items-center gap-2",
-              link.to === pathname ? "bg-white text-zinc-900" : "text-zinc-500",
-              index === lastLink ? "mt-auto" : ""
-            )}
-          >
-            <span className="text-lg">{link.icon}</span>
-            {link.title}
-          </Link>
-        ))}
-      </div>
-    </aside>
+    <div className="flex gap-2">
+      {links.map((link, index) => (
+        <Link
+          href={link.to}
+          key={link.id}
+          className={cn(
+            "py-2 px-4 rounded-xl text-[15px] font-medium flex items-center gap-2",
+            link.to === pathname ? "bg-blue-50 text-blue-500" : "text-zinc-500",
+            index === lastLink ? "mt-auto" : ""
+          )}
+        >
+          <span className="text-lg">{link.icon}</span>
+          {link.title}
+        </Link>
+      ))}
+    </div>
   );
 };
 
-export default Sidebar;
+export default Menu;

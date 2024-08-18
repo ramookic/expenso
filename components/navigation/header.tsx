@@ -7,6 +7,9 @@ import {
 } from "../ui/dropdown-menu";
 import LogoutButton from "../auth/logout-button";
 import AddIncomeExpenseModal from "../dashboard/add-income-expense-modal";
+import Menu from "./menu";
+import Logo from "../ui/logo";
+import Image from "next/image";
 
 const Header = async () => {
   const user = await getUser();
@@ -16,33 +19,39 @@ const Header = async () => {
   const { avatar, name, email } = user.user_metadata;
 
   return (
-    <header className="p-4 flex gap-4 justify-end">
-      <DropdownMenu>
-        <DropdownMenuTrigger asChild>
-          <button className="px-[14px] text-[15px] font-medium bg-blue-500 rounded-full text-white transition-all duration-300 ease hover:bg-blue-600">
-            + Add
-          </button>
-        </DropdownMenuTrigger>
-        <DropdownMenuContent className="flex flex-col rounded-2xl max-w-[300px] w-full divide-y">
-          <AddIncomeExpenseModal isAddIncome />
-          <AddIncomeExpenseModal isAddIncome={false} />
-        </DropdownMenuContent>
-      </DropdownMenu>
-      <DropdownMenu>
-        <DropdownMenuTrigger>
-          <ProfileImage name={name} avatar={avatar} />
-        </DropdownMenuTrigger>
-        <DropdownMenuContent className="flex flex-col gap-4 p-4 rounded-2xl mr-4">
-          <div className="flex gap-2">
+    <header className="p-4 flex justify-between bg-white mt-4 rounded-2xl border">
+      <div className="flex items-center gap-4 ml-2">
+        <Image width={24} height={24} src="./logo.svg" alt="logo" />
+        <Menu />
+      </div>
+      <div className="flex gap-4">
+        <DropdownMenu>
+          <DropdownMenuTrigger asChild>
+            <button className="px-[14px] text-[15px] font-medium bg-blue-500 rounded-full text-white transition-all duration-300 ease hover:bg-blue-600">
+              + Add
+            </button>
+          </DropdownMenuTrigger>
+          <DropdownMenuContent className="flex flex-col rounded-2xl max-w-[300px] w-full divide-y">
+            <AddIncomeExpenseModal isAddIncome />
+            <AddIncomeExpenseModal isAddIncome={false} />
+          </DropdownMenuContent>
+        </DropdownMenu>
+        <DropdownMenu>
+          <DropdownMenuTrigger>
             <ProfileImage name={name} avatar={avatar} />
-            <div className="flex flex-col">
-              <p className="font-medium">{name}</p>
-              <p className="text-zinc-500 text-sm">{email}</p>
+          </DropdownMenuTrigger>
+          <DropdownMenuContent className="flex flex-col gap-4 p-4 rounded-2xl mr-4">
+            <div className="flex gap-2">
+              <ProfileImage name={name} avatar={avatar} />
+              <div className="flex flex-col">
+                <p className="font-medium">{name}</p>
+                <p className="text-zinc-500 text-sm">{email}</p>
+              </div>
             </div>
-          </div>
-          <LogoutButton />
-        </DropdownMenuContent>
-      </DropdownMenu>
+            <LogoutButton />
+          </DropdownMenuContent>
+        </DropdownMenu>
+      </div>
     </header>
   );
 };
