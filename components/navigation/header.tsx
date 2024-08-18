@@ -6,15 +6,6 @@ import {
   DropdownMenuTrigger,
 } from "../ui/dropdown-menu";
 import LogoutButton from "../auth/logout-button";
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "../ui/dialog";
-import { Button } from "../ui/button";
 import AddIncomeModal from "../dashboard/add-income-modal";
 import AddExpenseModal from "../dashboard/add-expense-modal";
 
@@ -29,8 +20,8 @@ const Header = async () => {
     <header className="p-4 flex gap-4 justify-end">
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
-          <button className="px-[14px] bg-blue-500 rounded-full text-xl text-white transition-all duration-300 ease hover:bg-blue-600">
-            +
+          <button className="px-[14px] text-[15px] font-medium bg-blue-500 rounded-full text-white transition-all duration-300 ease hover:bg-blue-600">
+            + Add
           </button>
         </DropdownMenuTrigger>
         <DropdownMenuContent className="flex flex-col rounded-2xl max-w-[300px] w-full divide-y">

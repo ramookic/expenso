@@ -6,7 +6,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "../ui/dialog";
-import AddIncomeForm from "./add-income-form";
+import AddIncomeExpenseForm from "./add-income-expense-form";
 
 const AddIncomeModal = () => {
   return (
@@ -23,7 +23,7 @@ const AddIncomeModal = () => {
             This will add new income to your records.
           </DialogDescription>
         </DialogHeader>
-        <AddIncomeForm />
+        <AddIncomeExpenseForm />
       </DialogContent>
     </Dialog>
   );
