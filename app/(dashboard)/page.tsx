@@ -21,14 +21,14 @@ const Page = async () => {
 
   return (
     <div className="flex flex-col gap-4">
-      <div className="flex justify-between items-center">
+      <div className="flex flex-col justify-between gap-4 md:flex-row">
         <div>
           <p className="text-sm text-zinc-500">{formattedDate}</p>
           <h1 className="text-2xl font-semibold">Dashboard</h1>
         </div>
         <DateRangePicker />
       </div>
-      <div className="flex gap-8 w-full">
+      <div className="flex flex-col gap-8 w-full md:flex-row">
         <CardChart
           title="Savings"
           description="Total savings from past month"

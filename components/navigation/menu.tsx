@@ -1,7 +1,6 @@
 "use client";
 
 import Link from "next/link";
-import Logo from "../ui/logo";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
 import {
@@ -11,6 +10,7 @@ import {
   BiSolidCoinStack,
   BiSolidDashboard,
 } from "react-icons/bi";
+import { useMenu } from "@/contexts/Menu-Context";
 
 const links = [
   {
@@ -49,12 +49,22 @@ const Menu = () => {
   const pathname = usePathname();
   const lastLink = links.length - 1;
 
+  const { close, isOpen } = useMenu();
+
   return (
-    <div className="flex gap-2">
+    <div
+      className={cn(
+        "lg:flex lg:flex-row lg:gap-2",
+        isOpen
+          ? "fixed z-20 bg-white top-24 left-8 max-w-[300px] w-full rounded-2xl p-4 flex flex-col gap-2 border lg:flex lg:static lg:border-0 lg:p-0"
+          : "hidden"
+      )}
+    >
       {links.map((link, index) => (
         <Link
           href={link.to}
           key={link.id}
+          onClick={close}
           className={cn(
             "py-2 px-4 rounded-xl text-[15px] font-medium flex items-center gap-2",
             link.to === pathname ? "bg-blue-50 text-blue-500" : "text-zinc-500",

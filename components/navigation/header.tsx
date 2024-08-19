@@ -8,8 +8,8 @@ import {
 import LogoutButton from "../auth/logout-button";
 import AddIncomeExpenseModal from "../dashboard/add-income-expense-modal";
 import Menu from "./menu";
-import Logo from "../ui/logo";
 import Image from "next/image";
+import MenuTrigger from "./menu-trigger";
 
 const Header = async () => {
   const user = await getUser();
@@ -19,9 +19,10 @@ const Header = async () => {
   const { avatar, name, email } = user.user_metadata;
 
   return (
-    <header className="p-4 flex justify-between bg-white mt-4 rounded-2xl border">
+    <header className="p-4 flex justify-between bg-white rounded-2xl border">
       <div className="flex items-center gap-4 ml-2">
-        <Image width={24} height={24} src="./logo.svg" alt="logo" />
+        <MenuTrigger />
+        <Image width={26} height={26} src="./logo.svg" alt="logo" />
         <Menu />
       </div>
       <div className="flex gap-4">
