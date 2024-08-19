@@ -56,7 +56,7 @@ const Menu = () => {
       className={cn(
         "lg:flex lg:flex-row lg:gap-2",
         isOpen
-          ? "fixed z-20 bg-white top-24 left-8 max-w-[300px] w-full rounded-2xl p-4 flex flex-col gap-2 border lg:flex lg:static lg:border-0 lg:p-0"
+          ? "fixed z-20 bg-white dark:bg-zinc-900 top-24 left-8 max-w-[300px] w-full rounded-2xl p-4 flex flex-col gap-2 border lg:flex lg:static lg:border-0 lg:p-0"
           : "hidden"
       )}
     >
@@ -67,7 +67,9 @@ const Menu = () => {
           onClick={close}
           className={cn(
             "py-2 px-4 rounded-xl text-[15px] font-medium flex items-center gap-2",
-            link.to === pathname ? "bg-blue-50 text-blue-500" : "text-zinc-500",
+            link.to === pathname
+              ? "bg-blue-50 text-blue-500 dark:bg-blue-900/20"
+              : "text-zinc-500",
             index === lastLink ? "mt-auto" : ""
           )}
         >

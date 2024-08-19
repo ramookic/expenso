@@ -18,7 +18,7 @@ const Page: React.FC<Params> = ({ searchParams }) => {
   return (
     <div className="flex flex-col gap-4">
       <div>
-        <h1 className="text-3xl text-center font-bold text-zinc-900">
+        <h1 className="text-3xl text-center font-bold text-zinc-900 dark:text-white">
           Create an account
         </h1>
         <p className="text-center text-sm text-zinc-500">

@@ -14,7 +14,7 @@ export default async function Layout({
 
   return (
     <MenuProvider>
-      <div className="h-screen w-screen bg-zinc-50 overflow-y-scroll relative">
+      <div className="h-screen w-screen bg-zinc-50 dark:bg-zinc-950 overflow-y-scroll relative">
         <div className="fixed w-full top-0 left-0 z-50">
           <div className="container mx-auto py-4">
             <Header />

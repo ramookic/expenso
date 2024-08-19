@@ -9,9 +9,9 @@ const MenuTrigger = () => {
   return (
     <button onClick={toggleIsOpen} className="block lg:hidden">
       {isOpen ? (
-        <BiX className="text-zinc-700" size={24} />
+        <BiX className="text-zinc-700 dark:text-zinc-500" size={24} />
       ) : (
-        <BiMenuAltLeft className="text-zinc-700" size={24} />
+        <BiMenuAltLeft className="text-zinc-700 dark:text-zinc-500" size={24} />
       )}
     </button>
   );

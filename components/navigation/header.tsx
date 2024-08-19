@@ -10,6 +10,7 @@ import AddIncomeExpenseModal from "../dashboard/add-income-expense-modal";
 import Menu from "./menu";
 import Image from "next/image";
 import MenuTrigger from "./menu-trigger";
+import ThemeSwitcher from "../dashboard/theme-switcher";
 
 const Header = async () => {
   const user = await getUser();
@@ -19,13 +20,14 @@ const Header = async () => {
   const { avatar, name, email } = user.user_metadata;
 
   return (
-    <header className="p-4 flex justify-between bg-white rounded-2xl border">
+    <header className="p-4 flex justify-between bg-white/70 dark:bg-zinc-900/70 rounded-2xl border backdrop-blur-lg">
       <div className="flex items-center gap-4 ml-2">
         <MenuTrigger />
         <Image width={26} height={26} src="./logo.svg" alt="logo" />
         <Menu />
       </div>
       <div className="flex gap-4">
+        <ThemeSwitcher />
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <button className="px-[14px] text-[15px] font-medium bg-blue-500 rounded-full text-white transition-all duration-300 ease hover:bg-blue-600">
@@ -66,7 +68,7 @@ const ProfileImage: React.FC<ProfileImageProps> = ({ avatar, name }) => {
   return (
     <Avatar className="cursor-pointer">
       <AvatarImage src={avatar} />
-      <AvatarFallback className="font-semibold bg-zinc-100">
+      <AvatarFallback className="font-semibold bg-zinc-100 dark:bg-zinc-800">
         {name.slice(0, 1)}
       </AvatarFallback>
     </Avatar>

@@ -10,8 +10,17 @@ export const metadata = {
 
 const formattedDate = format(new Date(), "PPP", { locale: enGB });
 
-const Page = async () => {
-  const user = await getUser();
+interface PageProps {
+  searchParams?: {
+    dateFrom?: string;
+    dateTo?: string;
+  };
+}
+
+const Page: React.FC<PageProps> = async ({ searchParams }) => {
+  const dateFrom = searchParams?.dateFrom;
+  const dateTo = searchParams?.dateTo;
+
   const { data: incomesData, error: incomesError } = await getIncomes();
   const { data: expensesData, error: expensesError } = await getExpenses();
 

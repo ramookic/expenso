@@ -8,7 +8,7 @@ const Page = async () => {
   return (
     <div className="h-screen flex justify-center items-center">
       <div className="flex flex-col items-center justify-center">
-        <h1 className="text-3xl text-center font-bold text-zinc-900">
+        <h1 className="text-3xl text-center font-bold text-zinc-900 dark:text-white">
           Welcome{" "}
           <span className="text-blue-600">{data?.user_metadata.name}!</span>
         </h1>
