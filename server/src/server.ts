@@ -23,6 +23,22 @@ connectDB();
 
 const PORT = process.env.PORT || "8080";
 
-app.listen(PORT, () => {
+const server = app.listen(PORT, () => {
   console.log(`Server started at ${PORT}`);
+});
+
+process.on("unhandledRejection", (err: any) => {
+  console.log("Unhandled rejection!");
+  console.log(err.name, err.message);
+
+  server.close(() => {
+    process.exit(1);
+  });
+});
+
+process.on("SIGTERM", () => {
+  console.log("Sigterm received.");
+  server.close(() => {
+    console.log("Process terminated.");
+  });
 });
