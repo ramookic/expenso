@@ -8,6 +8,7 @@
   "scripts": {
     "build": "tsc",
     "dev": "node --env-file=.env --watch -r ts-node/register src/server.ts",
+    "setup-database": "node --env-file=.env -r ts-node/register src/config/setupDatabase.ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -17,10 +18,13 @@
   "devDependencies": {
     "@types/express": "^5.0.0",
     "@types/node": "^22.10.1",
+    "@types/pg": "^8.11.10",
     "ts-node": "^10.9.2",
     "typescript": "^5.7.2"
   },
   "dependencies": {
-    "express": "^4.21.1"
+    "express": "^4.21.1",
+    "pg": "^8.13.1",
+    "pg-promise": "^11.10.2"
   }
 }
